@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#sign-up-form').submit(function(e) {
+    $('#auth-form').submit(function(e) {
         e.preventDefault();
 
         var url = $(this).attr('action'),
