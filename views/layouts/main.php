@@ -22,7 +22,12 @@ MaterializeAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?= $content ?>
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h3><?= $this->title ?></h3>
+            <?= $content ?>
+        </div>
+    </div>
 </div>
 
 <?php $this->endBody() ?>

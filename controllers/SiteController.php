@@ -10,7 +10,7 @@ use yii\web\Cookie;
 
 class SiteController extends Controller
 {
-    public function actionIndex()
+    public function actionSignUp()
     {
         $form = new SignUpForm();
 
@@ -30,17 +30,11 @@ class SiteController extends Controller
 
     public function actionSession($userId, $token, $tokenExpiresAt)
     {
-        Yii::$app->response->cookies->add(new Cookie([
-            'name' => 'user_id',
-            'value' => $userId
-        ]));
-        Yii::$app->response->cookies->add(new Cookie([
-            'name' => 'token',
-            'value' => $token
-        ]));
-        Yii::$app->response->cookies->add(new Cookie([
-            'name' => 'token_expires_at',
-            'value' => $tokenExpiresAt
-        ]));
+        Yii::$app->session->set('user_id', $userId);
+        Yii::$app->session->set('token', $token);
+        Yii::$app->session->set('token_expires_at', $tokenExpiresAt);
+
+        $this->redirect(Yii::$app->params['startUrl']);
+        return false;
     }
 }

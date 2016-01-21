@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\extensions\AuthRequiredController;
 
-class TransactionController extends AuthRequiredController
+class WalletController extends AuthRequiredController
 {
     public function actionIndex()
     {
