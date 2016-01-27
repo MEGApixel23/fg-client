@@ -4,9 +4,10 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use app\assets\MaterializeAsset;
+use app\assets\MobileAppAsset;
+use yii\helpers\Url;
 
-MaterializeAsset::register($this);
+MobileAppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -21,16 +22,49 @@ MaterializeAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<?php
+
+if (!Yii::$app->session->get('is_guest')) {
+    $menus = [
+        [
+            'name' => 'Auth',
+            'url' => '/site/auth',
+        ], [
+            'name' => 'Sign-up',
+            'url' => '/site/sign-up',
+        ]
+    ];
+}
+
+?>
+<nav>
+    <ul class="right hide-on-med-and-down">
+        <? foreach ($menus as $menu) : ?>
+            <li><a href="<?= Url::to($menu['url']) ?>"><?= $menu['name'] ?></a></li>
+        <? endforeach ?>
+    </ul>
+    <ul id="slide-out" class="side-nav">
+        <? foreach ($menus as $menu) : ?>
+            <li><a href="<?= Url::to($menu['url']) ?>"><?= $menu['name'] ?></a></li>
+        <? endforeach ?>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+</nav>
+
 <div class="wrap">
     <div class="section no-pad-bot">
         <div class="container">
-            <h3><?= $this->title ?></h3>
             <?= $content ?>
         </div>
     </div>
 </div>
 
 <?php $this->endBody() ?>
+<script>
+    $(document).ready(function() {
+        $(".button-collapse").sideNav();
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
