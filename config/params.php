@@ -2,6 +2,6 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'api-url' => 'http://fg.lc',
+    'api-url' => 'http://api.fg.lc',
     'startUrl' => '/transaction'
 ];

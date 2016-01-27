@@ -7,18 +7,22 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use app\assets\MobileAppAsset;
 
-$this->registerJsFile('/js/app/signup.js', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/app/authentication.js', ['depends' => MobileAppAsset::className()]);
 
-$this->title = 'Signup';
+$this->title = 'Sign-up';
 ?>
+<h4><?= $this->title ?></h4>
+
 <div class="row">
     <? ActiveForm::begin(['action' => Yii::$app->params['api-url'] . '/sign-up', 'options' => [
         'id' => 'sign-up-form',
-        'class' => 'col s3'
+        'class' => 'col s12'
     ]]) ?>
+
     <div class="row">
-        <div class="input-field col">
+        <div class="input-field col s12">
             <?= Html::activeTextInput($form, 'email', [
                 'id' => 'email',
                 'name' => 'email',
@@ -28,8 +32,9 @@ $this->title = 'Signup';
             <div class="errors" data-for="email"></div>
         </div>
     </div>
+
     <div class="row">
-        <div class="input-field col">
+        <div class="input-field col s12">
             <?= Html::activePasswordInput($form, 'password', [
                 'id' => 'password',
                 'name' => 'password'
@@ -38,6 +43,12 @@ $this->title = 'Signup';
             <div class="errors" data-for="password"></div>
         </div>
     </div>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Signup</button>
+
+    <div class="row">
+        <div class="col s12">
+            <button class="btn waves-effect waves-light col s12" type="submit" name="action">Signup</button>
+        </div>
+    </div>
+
     <? ActiveForm::end() ?>
 </div>
