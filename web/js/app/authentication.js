@@ -20,26 +20,21 @@ $(document).ready(function() {
                         if (res.status == false) {
                             var errors = res.data;
 
-                            if (errors.length > 0) {
-                                for (var attr in errors) {
-                                    var $error = $form.find('.errors[data-for=' + attr + ']');
-                                    var $input = $form.find('[name=' + attr + ']');
+                            for (var attr in errors) {
+                                var $error = $form.find('.errors[data-for=' + attr + ']'),
+                                    $input = $form.find('[name=' + attr + ']');
 
-                                    $input.addClass('invalid');
-                                    $error.html(errors[attr].join(', '));
-                                }
+                                $input.addClass('invalid');
+                                $error.html(errors[attr].join(', '));
                             }
                         } else if (res.status == true) {
-                            var user = res.data.user;
-                            var device = res.data.device;
+                            var user = res.data.user,
+                                client = res.data.client;
 
-                            window.localStorage.setItem('user_id', user.id);
-                            window.localStorage.setItem('token', device.token);
-                            window.localStorage.setItem('token_expires_at', device.token_expires_at);
+                            AuthProvider.login(user, client);
 
-                            window.location.href =
-                                '/site/session?userId=' + user.id + '&token=' + device.token +
-                                '&tokenExpiresAt=' + device.token_expires_at;
+                            window.location.href = '/site/session?userId=' + user.id + '&token=' + client.token +
+                                '&tokenExpiresAt=' + client.token_expires_at;
                         }
                     }
                 },

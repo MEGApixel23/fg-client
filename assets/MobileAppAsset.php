@@ -18,5 +18,6 @@ class MobileAppAsset extends AssetBundle
             MaterializeAsset::className()
         ], $this->depends);
         $this->css = array_merge(['css/main.css'], $this->css);
+        $this->js = array_merge(['js/app/common.js'], $this->js);
     }
 }
