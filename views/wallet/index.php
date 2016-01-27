@@ -9,7 +9,7 @@ use app\assets\MobileAppAsset;
 $this->title = 'Wallets';
 $this->registerJsFile('/js/app/wallets.js', ['depends' => MobileAppAsset::className()]);
 ?>
-<table>
+<table id="wallets-table">
     <thead>
     <tr>
         <th data-field="id">Name</th>
@@ -19,21 +19,6 @@ $this->registerJsFile('/js/app/wallets.js', ['depends' => MobileAppAsset::classN
     </thead>
 
     <tbody>
-    <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-    </tr>
-    <tr>
-        <td>Alan</td>
-        <td>Jellybean</td>
-        <td>$3.76</td>
-    </tr>
-    <tr>
-        <td>Jonathan</td>
-        <td>Lollipop</td>
-        <td>$7.00</td>
-    </tr>
     </tbody>
 </table>
 

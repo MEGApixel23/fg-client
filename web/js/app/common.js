@@ -43,8 +43,9 @@ Requester.getWallets = function (callback) {
         complete: function () {},
         success: function(res) {
             var data = Requester.processResponse(res);
-            
-            console.log(data);
+
+            if (data !== undefined)
+                callback(data);
         },
         error: function(res) {}
     });
