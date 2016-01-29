@@ -35,17 +35,29 @@ AuthProvider.logout = function () {
 
 function Requester() {}
 
-Requester.getWallets = function (callback) {
+Requester.make = function (options) {
+    var data = options.hasOwnProperty('data') ? options.data : null,
+        url = options.hasOwnProperty('url') ? options.url : '',
+        successCallback = options.hasOwnProperty('successCallback') ? options.successCallback : null,
+        errorCallback = options.hasOwnProperty('errorCallback') ? options.errorCallback : null,
+        method = options.hasOwnProperty('method') ? options.method : 'GET';
+
     $.ajax({
-        type: 'GET',
-        url: apiUrl + '/wallet',
+        type: method,
+        url: apiUrl + url,
         dataType: 'json',
+        data: data,
         complete: function () {},
         success: function(res) {
             var data = Requester.processResponse(res);
 
-            if (data !== undefined)
-                callback(data);
+            if ((data.status === true) && successCallback) {
+                successCallback(data.data);
+            }
+
+            if ((data.status === false) && errorCallback) {
+                errorCallback(data.data, data.error, data.error_code);
+            }
         },
         error: function(res) {}
     });
@@ -56,11 +68,10 @@ Requester.processResponse = function (response) {
         if (response.status == false) {
             if (response.error_code === 'NO_TOKEN' || response.error_code === 'WRONG_TOKEN') {
                 window.location.href = '/site/auth';
+                return false;
             }
-        } else if (response.status == true) {
-            return response.data;
         }
     }
 
-    return false;
+    return response;
 };

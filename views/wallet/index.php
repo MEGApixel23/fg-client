@@ -7,7 +7,7 @@
 use app\assets\MobileAppAsset;
 
 $this->title = 'Wallets';
-$this->registerJsFile('/js/app/wallets.js', ['depends' => MobileAppAsset::className()]);
+$this->registerJsFile('/js/app/wallet/get.js', ['depends' => MobileAppAsset::className()]);
 ?>
 <table id="wallets-table">
     <thead>

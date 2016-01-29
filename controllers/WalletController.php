@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\forms\WalletForm;
 use Yii;
 use yii\web\Controller;
 
@@ -20,5 +21,14 @@ class WalletController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionCreate()
+    {
+        $form = new WalletForm();
+
+        return $this->render('create', [
+            'form' => $form
+        ]);
     }
 }
