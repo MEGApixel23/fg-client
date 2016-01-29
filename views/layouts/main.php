@@ -32,10 +32,17 @@ if (!Yii::$app->session->get('is_authorized')) {
     $menus = [
         [
             'name' => 'Auth',
-            'url' => '/site/auth',
+            'url' => '/auth',
         ], [
             'name' => 'Sign-up',
-            'url' => '/site/sign-up',
+            'url' => '/sign-up',
+        ]
+    ];
+} else {
+    $menus = [
+        [
+            'name' => 'Wallets',
+            'url' => '/wallet',
         ]
     ];
 }
