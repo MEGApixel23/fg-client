@@ -16,7 +16,7 @@ $this->title = 'Sign-up';
 <h4><?= $this->title ?></h4>
 
 <div class="row">
-    <? ActiveForm::begin(['action' => Yii::$app->params['api-url'] . '/sign-up', 'options' => [
+    <? ActiveForm::begin(['action' => '/sign-up', 'options' => [
         'id' => 'sign-up-form',
         'class' => 'col s12'
     ]]) ?>

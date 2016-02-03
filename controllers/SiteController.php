@@ -33,7 +33,7 @@ class SiteController extends Controller
         Yii::$app->session->set('user_id', $userId);
         Yii::$app->session->set('token', $token);
         Yii::$app->session->set('token_expires_at', $tokenExpiresAt);
-        Yii::$app->session->set('is_guest', false);
+        Yii::$app->session->set('is_authorized', true);
 
         $this->redirect(Yii::$app->params['startUrl']);
         return false;

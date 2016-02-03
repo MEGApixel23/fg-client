@@ -16,7 +16,7 @@ $this->title = 'Auth';
 <h4><?= $this->title ?></h4>
 
 <div class="row">
-    <? ActiveForm::begin(['action' => Yii::$app->params['api-url'] . '/auth', 'options' => [
+    <? ActiveForm::begin(['action' => '/auth', 'options' => [
         'id' => 'auth-form',
         'class' => 'col s12'
     ]]) ?>

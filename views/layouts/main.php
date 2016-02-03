@@ -18,20 +18,31 @@ MobileAppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <script>
+        var apiUrl = '<?= Yii::$app->params['api-url'] ?>';
+    </script>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
 <?php
-
-if (!Yii::$app->session->get('is_guest')) {
+$menus = [];
+if (!Yii::$app->session->get('is_authorized')) {
     $menus = [
         [
             'name' => 'Auth',
-            'url' => '/site/auth',
+            'url' => '/auth',
         ], [
             'name' => 'Sign-up',
-            'url' => '/site/sign-up',
+            'url' => '/sign-up',
+        ]
+    ];
+} else {
+    $menus = [
+        [
+            'name' => 'Wallets',
+            'url' => '/wallet',
         ]
     ];
 }
@@ -64,6 +75,7 @@ if (!Yii::$app->session->get('is_guest')) {
     $(document).ready(function() {
         $(".button-collapse").sideNav();
     });
+
 </script>
 </body>
 </html>
