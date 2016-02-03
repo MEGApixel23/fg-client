@@ -25,4 +25,23 @@ $(document).ready(function() {
             }
         });
     });
+
+    var $select = $('#currency-id');
+
+    Requester.make({
+        method: 'GET',
+        url: '/currency',
+        successCallback: function (currencies) {
+            for (var i = 0; i < currencies.length; i++) {
+                var currency = currencies[i];
+                var $option = $('<option></option>').attr({
+                    value: currency.id
+                }).html(currency.name);
+
+                $select.append($option);
+            }
+
+            $select.material_select();
+        }
+    });
 });

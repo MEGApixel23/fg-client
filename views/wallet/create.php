@@ -44,8 +44,8 @@ $this->registerJsFile('/js/app/wallet/create.js', ['depends' => MobileAppAsset::
 
     <div class="row">
         <div class="input-field col s12">
-            <?= Html::activeTextInput($form, 'currency_id', [
-                'id' => 'currency_id',
+            <?= Html::activeDropDownList($form, 'currency_id', [], [
+                'id' => 'currency-id',
                 'name' => 'currency_id'
             ]) ?>
             <label for="amount"><?= $form->getAttributeLabel('currency_id') ?></label>
