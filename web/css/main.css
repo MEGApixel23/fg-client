@@ -5,3 +5,9 @@ nav {
 .mdi-navigation-menu {
     padding-left: 10px;
 }
+
+.controls {
+    position: fixed;
+    bottom: 45px;
+    right: 24px;
+}
